@@ -3,7 +3,7 @@ Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
 Author: Ander Fernandez Jauregui
-Maintainer: afernandez@lin3s.com
+Maintainer: 
 Description: This package enables you to extract data from Prestashop.
 License: What license is it under?
 Encoding: UTF-8
