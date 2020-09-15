@@ -1,6 +1,6 @@
 Package: prestashopR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Data extraction from Prestashop via Prestashop API
 Version: 0.1.0
 Author: person("Ander","Fernández","afernandez@lin3s.com", role = c("aut","cre"))
 Description: This package enables you to extract data from Prestashop through its API.
