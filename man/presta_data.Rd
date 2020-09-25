@@ -16,7 +16,7 @@ presta_data(
 \arguments{
 \item{token}{Webservice Key.}
 
-\item{hostname}{Hotname of your website. For example, si your URL is https://www.test.com/, the hostname is www.prueba.com. On the other hand, if your URL is https://test.com/ your hostname is test.com.}
+\item{hostname}{Hotname of your website. For example, si your URL is https://www.test.com/, the hostname is www.test.com. On the other hand, if your URL is https://test.com/ your hostname is test.com.}
 
 \item{endpoint}{Indicates the table you want to retrieve data from. The webservice should have permissions.}
 

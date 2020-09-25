@@ -4,7 +4,7 @@
 #' To do so, you just need to indicate the hostname, token and the orders of which you want to extract data from.
 #'
 #' @param token Webservice Key.
-#' @param hostname Hotname of your website. For example, si your URL is https://www.test.com/, the hostname is www.prueba.com. On the other hand, if your URL is https://test.com/ your hostname is test.com.
+#' @param hostname Hotname of your website. For example, si your URL is https://www.test.com/, the hostname is www.test.com. On the other hand, if your URL is https://test.com/ your hostname is test.com.
 #' @param endpoint Indicates the table you want to retrieve data from. The webservice should have permissions.
 #' @param ids A vector including the ids that you want to extract. To extract all the data, set parameter to NULL.
 #' @param group_dim The number of rows that will be retrieved in each API call. Set as default if you will retrieve a lot of data.
@@ -27,6 +27,7 @@ presta_data = function(token, hostname, endpoint ="orders", ids=NULL,  group_dim
 
   pb <- utils::txtProgressBar(min = 0, max = length(chunks), initial = 0, style = 3)
 
+  data = list()
   for(i in 1:length(chunks)){
 
     # Hacemos la petición
@@ -38,17 +39,16 @@ presta_data = function(token, hostname, endpoint ="orders", ids=NULL,  group_dim
     x = x[[1]]
     x = x[,!(sapply(x, class) %in% c("data.frame", "matrxi","list"))]
 
-    if(i == 1){
-      data = x
-    } else{
-      data = rbind(data, x)
-    }
+    data[[i]] = x
+
     if(verbose == TRUE){
       print(paste('Round', i, 'finished. Rounds missing: ', length(chunks)-i))
     }
 
     utils::setTxtProgressBar(pb,i)
   }
+
+  data = dplyr::bind_rows(data)
 
   return(data)
 

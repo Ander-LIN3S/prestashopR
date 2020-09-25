@@ -9,4 +9,6 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   httr,
-  jsonlite
+  jsonlite,
+  dplyr
+RoxygenNote: 7.1.0
