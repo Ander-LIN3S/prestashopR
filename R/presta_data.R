@@ -12,19 +12,13 @@
 #' @return A dataframe with all extracted data
 #' @export
 
-presta_data = function(token, hostname, endpoint ="orders", ids=NULL,  group_dim = 100, verbose = FALSE){
+presta_data = function(token, hostname, endpoint ="orders",id_column = "id" ,ids=NULL,  group_dim = 100, verbose = FALSE){
 
   if(is.null(ids)){
-    url =  paste0("https://",hostname,"/api/",endpoint,"?ws_key=",token,"&output_format=JSON")
-    x = httr::GET(url)
-    x = jsonlite::fromJSON(httr::content(x, type = "text", encoding = "UTF-8"))
-    x = x[[1]]
-    ids = x$id
-    if(verbose==T){print("Extracted all order ids.")}
+    ids = prestashopR::presta_extract_ids(token, hostname, endpoint, verbose)
   }
 
   chunks = split(ids, ceiling(seq_along(ids)/group_dim))
-
   pb <- utils::txtProgressBar(min = 0, max = length(chunks), initial = 0, style = 3)
 
   data = list()
@@ -32,12 +26,12 @@ presta_data = function(token, hostname, endpoint ="orders", ids=NULL,  group_dim
 
     # Hacemos la petición
     pedidos = paste0(chunks[[i]], collapse = "|")
-    url = paste0("https://",hostname,"/api/",endpoint,"?ws_key=",token,"&filter[id]=[", pedidos,"]&display=full&output_format=JSON")
+    url = paste0("https://",hostname,"/api/",endpoint,"?ws_key=",token,"&filter[",id_column,"]=[", pedidos,"]&display=full&output_format=JSON")
 
     x = httr::GET(url)
     x = jsonlite::fromJSON(httr::content(x, type = "text", encoding = "UTF-8"))
     x = x[[1]]
-    x = x[,!(sapply(x, class) %in% c("data.frame", "matrxi","list"))]
+    x = x[,!(sapply(x, class) %in% c("data.frame", "matrix","list"))]
 
     data[[i]] = x
 
