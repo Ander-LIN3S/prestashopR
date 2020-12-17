@@ -11,7 +11,7 @@
 #' @export
 #'
 
-presta_extract_ids = function(token, hostname, endpoint ="orders",id_column = id , verbose = FALSE){
+presta_extract_ids = function(token, hostname, endpoint ="orders", verbose = FALSE){
   url =  paste0("https://",hostname,"/api/",endpoint,"?ws_key=",token,"&output_format=JSON")
   x = httr::GET(url)
   x = jsonlite::fromJSON(httr::content(x, type = "text", encoding = "UTF-8"))
