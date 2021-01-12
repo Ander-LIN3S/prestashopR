@@ -23,9 +23,9 @@ presta_extract_ids(
 
 \item{verbose}{Whether you want to see the process of extraction.}
 
-\item{date_min}{Minimum date to get data from. Not required. If used, date_max is also required.}
+\item{date_min}{Minimum date to get data from in YY-MM-DD format.  Not required. If used, date_max is also required.}
 
-\item{date_max}{Maximum date to get data from. Not required. If used, date_min is also required.}
+\item{date_max}{Maximum date to get data from YY-MM-DD format. Not required. If used, date_min is also required.}
 
 \item{date_add}{Column to use for filtering data by date. Defaul is date_add.}
 }
