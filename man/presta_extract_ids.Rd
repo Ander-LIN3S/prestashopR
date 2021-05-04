@@ -8,10 +8,11 @@ presta_extract_ids(
   token,
   hostname,
   endpoint = "orders",
-  verbose = FALSE,
   date_min = NULL,
   date_max = NULL,
-  date_column = "date_add"
+  date_column = "date_add",
+  verbose = FALSE,
+  default_chunks = 2
 )
 }
 \arguments{
@@ -21,11 +22,13 @@ presta_extract_ids(
 
 \item{endpoint}{Indicates the table you want to retrieve data from. The webservice should have permissions.}
 
-\item{verbose}{Whether you want to see the process of extraction.}
-
 \item{date_min}{Minimum date to get data from in YY-MM-DD format.  Not required. If used, date_max is also required.}
 
 \item{date_max}{Maximum date to get data from YY-MM-DD format. Not required. If used, date_min is also required.}
+
+\item{verbose}{Whether you want to see the process of extraction.}
+
+\item{default_chunks}{In case too much info is asked, the number of date partitions that will be created for smoother extractions.}
 
 \item{date_add}{Column to use for filtering data by date. Defaul is date_add.}
 }

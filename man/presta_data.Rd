@@ -11,6 +11,7 @@ presta_data(
   id_column = "id",
   ids = NULL,
   group_dim = 100,
+  include_nested = F,
   verbose = FALSE
 )
 }
@@ -24,6 +25,8 @@ presta_data(
 \item{ids}{A vector including the ids that you want to extract. To extract all the data, set parameter to NULL.}
 
 \item{group_dim}{The number of rows that will be retrieved in each API call. Set as default if you will retrieve a lot of data.}
+
+\item{include_nested}{Whether to include related nested data, such as customer groups.}
 
 \item{verbose}{Whether you want to see the process of extraction.}
 }
