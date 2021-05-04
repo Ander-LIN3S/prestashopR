@@ -17,7 +17,10 @@ presta_data = function(token, hostname, endpoint ="orders",id_column = "id" ,ids
                        include_nested = F, verbose = FALSE){
 
     if(is.null(ids)){
-      ids = prestashopR::presta_extract_ids(token, hostname, endpoint, verbose)
+      ids = prestashopR::presta_extract_ids(token = token,
+                                            hostname = hostname,
+                                            endpoint = endpoint,
+                                            verbose = verbose)
     }
 
     chunks = split(ids, ceiling(seq_along(ids)/group_dim))
