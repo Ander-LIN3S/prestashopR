@@ -47,7 +47,7 @@ presta_extract_ids = function(token, hostname, endpoint ="orders", date_min =NUL
         if(verbose){message(paste('Too much data. Extracting data from', as.Date(fechas[i]),
                                   'to',as.Date(fechas[i+1])))}
 
-        ids[[i]] = prueba(token, hostname, endpoint, date_min =fechas[i], date_max=fechas[i+1],
+        ids[[i]] = presta_extract_ids(token, hostname, endpoint, date_min =fechas[i], date_max=fechas[i+1],
                           date_column, verbose, default_chunks)
 
       }
